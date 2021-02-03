@@ -1,0 +1,11 @@
+
+@mixin card($background, $color) {
+    background-color: $background;
+    color: $color;
+    @media screen and (max-width: 662px){
+        height: 100px;
+    }
+    @media screen and (min-width: 662px){
+        height: 150px;
+    }
+}

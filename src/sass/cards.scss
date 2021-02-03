@@ -1,0 +1,21 @@
+.oneCardCol {
+    height: 100%;
+
+    &-oneCardRow {
+        @include card(red, white);
+        display: flex;
+
+        img {
+            width: 17vw;
+            height: auto;
+        }
+
+        &-content {
+            h3 {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+    }
+}
