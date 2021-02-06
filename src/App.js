@@ -1,37 +1,35 @@
-import { Component } from 'react';
+import { Component, useEffect, useState } from 'react';
 import './sass/main.scss';
 import ActuCards from "./components/ActuCards";
 import Header from './components/Header'
 import { Row } from 'antd';
 
-export default class App extends Component {
+const App = () => {
 
-  state = {
-    actus: [],
-    loading: true
-  }
+  const [actu, setActu] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  async getActu() {
+  const getActus = async () => {
     const data = await fetch("http://newsapi.org/v2/top-headlines?sources=google-news-fr&apiKey=f385833c95e6484bb01010d951876510")
       .then(response => response.json())
 
-    this.setState({
-      actus: data,
-      loading: false
-    })
+    setActu(data)
+    setLoading(false)
   }
 
-  componentDidMount() {
-    this.getActu()
-  }
+  useEffect(() => {
+    getActus()
+  })
 
+  // Slice le tableau et mettre le premier atricle en highlight
 
-  render() {
-    let listActu
-    if (this.state.loading) {
+  let listActu
+    
+    if (loading) {
       return <p>Chargement en cours...</p>
     }
-    listActu = this.state.actus.articles.map((actu) => {
+  
+    listActu = actu.articles.map((actu) => {
       console.log(actu.author);
       return (
         <ActuCards
@@ -39,6 +37,7 @@ export default class App extends Component {
           title={actu.title}
           urlToImage={actu.urlToImage}
           content={actu.content}
+          url={actu.url}
         />
       )
     })
@@ -55,5 +54,6 @@ export default class App extends Component {
 
 
 
-  }
 }
+
+export default App
