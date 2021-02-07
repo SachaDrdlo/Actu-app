@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.css';
-import ActuContent from './components/ActuContent'
+import Infos from './components/Infos'
 
 import {
   BrowserRouter,
@@ -16,7 +16,7 @@ export const Root = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={App}/>
-        <Route path="/:name" component={ActuContent}/>
+        <Route path="/Infos" component={Infos}/>
       </Switch>
     </BrowserRouter>
   )

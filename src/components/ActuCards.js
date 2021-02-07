@@ -6,11 +6,13 @@ const actuCards = ({ id, name, title, urlToImage, url }) => {
     return (
 
         <Col lg={10} className="oneCardCol">
-            <div className="oneCardCol oneCardCol-oneCardRow">
+            <div className="container">
+                <div className="oneCardCol oneCardCol-oneCardRow">
                     <img src={urlToImage} alt="" />
-                <div className="oneCardCol oneCardCol-oneCardRow oneCardCol-oneCardRow-content">
-                    <h3>{title}</h3>
-                    <a href={url}>En savoir plus</a>
+                    <div className="oneCardCol oneCardCol-oneCardRow oneCardCol-oneCardRow-content">
+                        <h3>{title}</h3>
+                        <a href={url}>En savoir plus</a>
+                    </div>
                 </div>
             </div>
         </Col>

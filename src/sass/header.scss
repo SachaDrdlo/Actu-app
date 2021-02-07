@@ -1,7 +1,23 @@
-.header {
-    background-color: coral;
+@import 'variables';
 
-    h1 {
-        text-align: center;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-btn {
+        a {
+            height: 35px;
+            width: 110px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+        }
+        a:nth-child(1) {
+            margin-right: 15px;
+        }
     }
 }

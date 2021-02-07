@@ -1,10 +1,27 @@
+@import 'variables';
+
+.cardsRow {
+    display: flex;
+    justify-content: space-around;
+}
+
 .oneCardCol {
     height: 100%;
     border-radius: 3px;
     margin: 10px;
 
     &-oneCardRow {
-        @include card(red, white);
+        // background-color: $;
+        // color: $color;
+
+        @media screen and (max-width: 662px) {
+            height: 100px;
+        }
+
+        @media screen and (min-width: 662px) {
+            height: 150px;
+        }
+
         display: flex;
 
 
@@ -17,13 +34,15 @@
         }
 
         &-content {
+            padding: 10px;
             margin: 0;
             flex-direction: column;
             justify-content: space-around;
 
             h3 {
-                text-align:center;
+                text-align: center;
             }
+
             a {
                 display: flex;
                 justify-content: flex-end;

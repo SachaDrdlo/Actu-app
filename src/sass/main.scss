@@ -2,7 +2,15 @@
 'reset',
 'header',
 'cards',
+'infos',
+'switch',
 'variables';
+
+body {
+    background-color: $clr-skyblue!important;
+    font-family: 'Inconsolata', monospace!important;
+    font-weight: 200;
+}
 
 
 .container {
