@@ -15,7 +15,7 @@
         // color: $color;
 
         @media screen and (max-width: 662px) {
-            height: 100px;
+            height: 140px;
         }
 
         @media screen and (min-width: 662px) {
@@ -41,6 +41,10 @@
 
             h3 {
                 text-align: center;
+
+                @media screen and (max-width: 662px) {
+                    font-size: 1.5rem;
+                }
             }
 
             a {

@@ -19,6 +19,16 @@ body {
     margin: 0 auto;
 }
 
-.none {
-    display: none;
+.options {
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    
+    .searchFonction {
+        
+        .searchContent {
+            display: flex;
+        }
+    }
 }
+

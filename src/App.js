@@ -2,19 +2,17 @@ import { Component, useEffect, useState } from 'react';
 import './sass/main.scss';
 import ActuCards from "./components/ActuCards";
 import Header from './components/Header'
-import { Row } from 'antd';
-import HighlitedCard from './components/HighlightedCard';
+import { Input, Row, Button } from 'antd';
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/GlobalStyles";
 import { lightTheme, darkTheme } from "./components/Theme"
 
 const App = () => {
 
-  let oneCardCol = document.querySelector('oneCardCol')
-
   const [actu, setActu] = useState([])
   const [loading, setLoading] = useState(true)
   const [theme, setTheme] = useState('light')
+  const [search, setSearch] = useState([])
   const toggleTheme = () => {
     if (theme === 'light') {
       window.localStorage.setItem('theme', 'dark')
@@ -28,8 +26,8 @@ const App = () => {
   };
 
   const getActus = async () => {
-    // const data = await fetch("https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=9IUJnGbqkaoX6gmjDBAloBMnGPP1HAgB")
-    const data = await fetch("http://newsapi.org/v2/top-headlines?country=fr&apiKey=f385833c95e6484bb01010d951876510")
+    const data = await fetch("https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=9IUJnGbqkaoX6gmjDBAloBMnGPP1HAgB")
+      // const data = await fetch("http://newsapi.org/v2/top-headlines?country=fr&apiKey=f385833c95e6484bb01010d951876510")
       .then(response => response.json())
 
     setActu(data)
@@ -42,20 +40,6 @@ const App = () => {
     localTheme && setTheme(localTheme);
   }, [])
 
-  // Slice le tableau et mettre le premier atricle en highlight
-
-  // const actus = Object.keys(actu)
-  // console.log([...actu])
-  // let oneActu
-
-  // oneActu = Object.values(actu).map((item) => {
-  //   return(
-  //     <HighlitedCard
-  //       urlToImage={item.url}
-  //       title={item.title}
-  //     />
-  //   )
-  // })
 
   let listActu
 
@@ -63,22 +47,37 @@ const App = () => {
     return <p>Chargement en cours...</p>
   }
 
-  // listActu = actu.results.map((actu) => {
-  listActu = actu.articles.map((actu) => {
-    if (actu.urlToImage = null) {
-        oneCardCol.classList.add('none')
-    } else {
-      return (
-        <ActuCards
-          key={actu.publishedAt}
-          title={actu.title}
-          // urlToImage={actu.media.url}
-          urlToImage={actu.urlToImage}
-          content={actu.content}
-          url={actu.url}
-        />
-      )
-    }
+  const handleChange = (e) => {
+    setSearch(e.target.value)
+  }
+
+
+  /**
+   * FILTER
+   */
+
+  // const searchFunction = actu.results.filter(() => (search === actu.results.source))
+
+  // const zobar = () => {
+  //   const results = actu.results.filter(title =>
+  //     title.title.includes(search)
+  //   );
+  //   setSearch(results);
+  // }
+
+  listActu = actu.results.map((actu) => {
+    // listActu = actu.articles.map((actu) => {
+    return (
+      <ActuCards
+        // style={{ display: actu.urlToImage == null ? 'none' : 'block' }}
+        key={actu.publishedAt}
+        title={actu.title}
+        urlToImage={actu.media.url}
+        // urlToImage={actu.urlToImage}
+        content={actu.content}
+        url={actu.url}
+      />
+    )
   })
 
   return (
@@ -89,16 +88,27 @@ const App = () => {
           <Header
             btn={toggleTheme}
           />
+          <div className="jesaispas">
+            <div className="container">
+              <div className="options">
+                <label className="switch" onChange={() => toggleTheme()}>
+                  <input type="checkbox" />
+                  <span className="slider round"></span>
+                </label>
+                <div className="searchFonction">
+                  <h4>Rechercher un article :</h4>
+                  <div className="searchContent">
+                    <Input value={search} onChange={handleChange}></Input>
+                    {/* <Button onClick={() => searchFunction}>Rechercher</Button> */}
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          {/* <button onClick={toggleTheme}>change</button> */}
-          <label className="switch" onChange={() => toggleTheme()}>
-            <input type="checkbox" />
-            <span className="slider round"></span>
-          </label>
+          </div>
           <Row className="cardsRow">
             {listActu}
           </Row>
-
         </div>
       </>
     </ThemeProvider>

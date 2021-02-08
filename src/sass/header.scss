@@ -5,6 +5,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 8px 0;
+
+    h1 {
+        margin: 0;
+    }
 
     &-btn {
         a {
@@ -15,6 +20,10 @@
             justify-content: center;
             align-items: center;
             border-radius: 4px;
+
+            @media screen and (max-width: 662px) {
+                width: 70px;
+            }
         }
         a:nth-child(1) {
             margin-right: 15px;
