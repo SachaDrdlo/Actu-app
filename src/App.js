@@ -10,6 +10,8 @@ import { lightTheme, darkTheme } from "./components/Theme"
 
 const App = () => {
 
+  let oneCardCol = document.querySelector('oneCardCol')
+
   const [actu, setActu] = useState([])
   const [loading, setLoading] = useState(true)
   const [theme, setTheme] = useState('light')
@@ -26,7 +28,8 @@ const App = () => {
   };
 
   const getActus = async () => {
-    const data = await fetch("https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=9IUJnGbqkaoX6gmjDBAloBMnGPP1HAgB")
+    // const data = await fetch("https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=9IUJnGbqkaoX6gmjDBAloBMnGPP1HAgB")
+    const data = await fetch("http://newsapi.org/v2/top-headlines?country=fr&apiKey=f385833c95e6484bb01010d951876510")
       .then(response => response.json())
 
     setActu(data)
@@ -60,16 +63,22 @@ const App = () => {
     return <p>Chargement en cours...</p>
   }
 
-  listActu = actu.results.map((actu) => {
-    return (
-      <ActuCards
-        key={actu.publishedAt}
-        title={actu.title}
-        urlToImage={actu.media.url}
-        content={actu.content}
-        url={actu.url}
-      />
-    )
+  // listActu = actu.results.map((actu) => {
+  listActu = actu.articles.map((actu) => {
+    if (actu.urlToImage = null) {
+        oneCardCol.classList.add('none')
+    } else {
+      return (
+        <ActuCards
+          key={actu.publishedAt}
+          title={actu.title}
+          // urlToImage={actu.media.url}
+          urlToImage={actu.urlToImage}
+          content={actu.content}
+          url={actu.url}
+        />
+      )
+    }
   })
 
   return (
@@ -83,16 +92,16 @@ const App = () => {
 
           {/* <button onClick={toggleTheme}>change</button> */}
           <label className="switch" onChange={() => toggleTheme()}>
-            <input type="checkbox"/>
-              <span className="slider round"></span>
+            <input type="checkbox" />
+            <span className="slider round"></span>
           </label>
-            <Row className="cardsRow">
-              {listActu}
-            </Row>
+          <Row className="cardsRow">
+            {listActu}
+          </Row>
 
         </div>
       </>
-      </ThemeProvider>
+    </ThemeProvider>
   );
 
 
