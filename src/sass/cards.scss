@@ -1,0 +1,61 @@
+@import 'variables';
+
+.cardsRow {
+    display: flex;
+    justify-content: space-around;
+}
+
+img {
+    object-fit: cover;
+}
+
+.oneCardCol {
+    height: 100%;
+    border-radius: 3px;
+    margin: 10px;
+
+    &-oneCardRow {
+        // background-color: $;
+        // color: $color;
+
+        @media screen and (max-width: 662px) {
+            height: 140px;
+        }
+
+        @media screen and (min-width: 662px) {
+            height: 150px;
+        }
+
+        display: flex;
+
+
+        height: 10vw;
+
+        img {
+            width: 37%;
+            height: auto;
+            border-radius: 3px;
+        }
+
+        &-content {
+            padding: 10px;
+            margin: 0;
+            flex-direction: column;
+            justify-content: space-around;
+
+            h3 {
+                text-align: center;
+
+                @media screen and (max-width: 662px) {
+                    font-size: 1.2rem;
+                }
+            }
+
+            a {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+
+    }
+}
