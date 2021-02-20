@@ -7,16 +7,6 @@ const ActuContent = () => {
 
     const [theme, setTheme] = useState('light')
 
-    const toggleTheme = () => {
-        if (theme === 'light') {
-          setTheme('dark')
-        } else {
-          setTheme('light')
-        }
-    
-        return [theme, toggleTheme]
-      };
-
       useEffect(() => {
         const localTheme = window.localStorage.getItem('theme');
         localTheme && setTheme(localTheme);

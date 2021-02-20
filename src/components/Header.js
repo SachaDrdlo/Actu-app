@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Header = (btn) => {
+const Header = () => {
     return (
         <div className="allContent">
             <div className="container">

@@ -5,6 +5,10 @@
     justify-content: space-around;
 }
 
+img {
+    object-fit: cover;
+}
+
 .oneCardCol {
     height: 100%;
     border-radius: 3px;
@@ -28,7 +32,7 @@
         height: 10vw;
 
         img {
-            width: 17vw;
+            width: 37%;
             height: auto;
             border-radius: 3px;
         }
@@ -43,7 +47,7 @@
                 text-align: center;
 
                 @media screen and (max-width: 662px) {
-                    font-size: 1.5rem;
+                    font-size: 1.2rem;
                 }
             }
 
